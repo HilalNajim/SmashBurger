@@ -47,7 +47,9 @@
 
   .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23E8420A' fill-opacity='.08'/%3E%3C/svg%3E") repeat;pointer-events:none}
   .hero-badge{background:var(--fire);color:#fff;font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;padding:.3rem .9rem;border-radius:2rem;margin-bottom:1rem;display:inline-block}
-  .hero h1{font-family:'DBZ',sans-serif;font-size:clamp(3.5rem,12vw,7rem);letter-spacing:.04em;line-height:1;text-shadow:4px 4px 0 var(--fire),8px 8px 0 rgba(232,66,10,.3)}
+
+.hero h1{font-family:'DBZ',sans-serif;font-size:clamp(3.5rem,12vw,7rem);letter-spacing:.04em;line-height:1;}
+
   .hero h1 span{color:#fff}
   .hero-sub{font-size:1.05rem;color:var(--muted);margin:.8rem 0 .4rem;font-style:italic}
   .hero-hours{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,197,24,.12);border:1.5px solid var(--gold);border-radius:2rem;padding:.5rem 1.2rem;margin-top:1rem;font-size:1.1rem;font-weight:900;color:var(--gold)}
@@ -139,7 +141,10 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">🌙 Le burger de nuit à Annemasse</div>
-  <h1><span>SMASH</span> SENSEI</h1>
+<h1>
+  <span style="color:var(--fire);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">SMASH</span>
+  <span style="color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">SENSEI</span>
+</h1>
   <p class="hero-sub">Quand la ville dort… Smash Sensei régale encore.</p>
   <div class="hero-hours">
     <span class="moon">🌙</span>
