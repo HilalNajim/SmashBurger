@@ -8,6 +8,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&family=Permanent+Marker&display=swap');
 
+@font-face {
+  font-family: 'DBZ';
+  src: url('assets/Saiyan-Sans.ttf') format('truetype');
+}
+
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
     --fire:#E8420A;
@@ -38,10 +43,11 @@
     padding:4rem 1.5rem 3rem;
     overflow:hidden;
     background:url('assets/bg-fire.png') center center / cover no-repeat;
+
   }
   .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23E8420A' fill-opacity='.08'/%3E%3C/svg%3E") repeat;pointer-events:none}
   .hero-badge{background:var(--fire);color:#fff;font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;padding:.3rem .9rem;border-radius:2rem;margin-bottom:1rem;display:inline-block}
-  .hero h1{font-family:'Bangers',cursive;font-size:clamp(3.5rem,12vw,7rem);letter-spacing:.04em;line-height:1;color:var(--gold);text-shadow:4px 4px 0 var(--fire),8px 8px 0 rgba(232,66,10,.3)}
+  .hero h1 { font-family: 'DBZ', sans-serif; }
   .hero h1 span{color:#fff}
   .hero-sub{font-size:1.05rem;color:var(--muted);margin:.8rem 0 .4rem;font-style:italic}
   .hero-hours{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,197,24,.12);border:1.5px solid var(--gold);border-radius:2rem;padding:.5rem 1.2rem;margin-top:1rem;font-size:1.1rem;font-weight:900;color:var(--gold)}
