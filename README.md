@@ -1,1 +1,1 @@
-# SmashBurger
+# SmashSensei
