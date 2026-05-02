@@ -1,409 +1,339 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smash Sensei – Le Burger de Nuit à Annemasse</title>
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&family=Permanent+Marker&display=swap');
-
-@font-face {
-  font-family: 'DBZ';
-  src: url('assets/Saiyan-Sans.ttf') format('truetype');
-}
-
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --fire:#E8420A;
-    --gold:#F5C518;
-    --dark:#0d0d0d;
-    --card:#1a1a1a;
-    --text:#f0ece0;
-    --muted:#aaa;
-  }
-  body{background:var(--dark) url('assets/bg-purple.jpeg') center top / cover no-repeat fixed;color:var(--text);font-family:'Nunito',sans-serif;overflow-x:hidden}
-
-  /* NAV */
-  nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.95);border-bottom:2px solid var(--fire);display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.5rem}
-  .nav-logo{font-family:'DBZ',sans-serif;font-size:1.8rem;letter-spacing:.05em;line-height:1}
-  .nav-links{display:flex;gap:1.5rem;list-style:none}
-  .nav-links a{color:var(--text);text-decoration:none;font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;transition:color .2s}
-  .nav-links a:hover{color:var(--gold)}
-
-  /* HERO */
-  .hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:4rem 1.5rem 3rem;
-    overflow:hidden;
-  
-  }
-
-  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23E8420A' fill-opacity='.08'/%3E%3C/svg%3E") repeat;pointer-events:none}
-  .hero-badge{background:var(--fire);color:#fff;font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;padding:.3rem .9rem;border-radius:2rem;margin-bottom:1rem;display:inline-block}
-
-.hero h1{font-family:'DBZ',sans-serif;font-size:clamp(3.5rem,12vw,7rem);letter-spacing:.04em;line-height:1;}
-
-  .hero h1 span{color:#fff}
-  .hero-sub{font-family:'Permanent Marker',cursive;font-size:clamp(1.2rem,3.5vw,1.8rem);color:var(--text);margin:.8rem 0 .4rem;text-shadow:1px 1px 0 rgba(232,66,10,.6)}
-  .hero-hours{display:inline-flex;align-items:center;gap:.5rem;background:rgba(13,13,13,.75);border:1.5px solid var(--gold);border-radius:2rem;padding:.5rem 1.2rem;margin-top:1rem;font-size:1.1rem;font-weight:900;color:var(--gold)}
-  .moon{font-size:1.2rem}
-  .hero-cta{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-  .btn{padding:.7rem 1.6rem;border-radius:2rem;font-weight:900;font-size:.95rem;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;transition:transform .15s,box-shadow .15s;cursor:pointer;border:none}
-  .btn-primary{background:var(--fire);color:#fff;box-shadow:0 4px 16px rgba(232,66,10,.4)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(232,66,10,.6)}
-  .btn-outline{background:rgba(13,13,13,.75);border:2px solid var(--gold);color:var(--gold)}
-  .btn-outline:hover{background:rgba(245,197,24,.1);transform:translateY(-2px)}
-  .scroll-hint{margin-top:3rem;color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;animation:bounce 1.8s infinite}
-  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-
-  /* SECTIONS */
-  section{padding:4rem 1.5rem;max-width:1100px;margin:0 auto}
-  .section-title{font-family:'Bangers',cursive;font-size:clamp(2rem,6vw,3.5rem);letter-spacing:.04em;color:var(--gold);text-shadow:3px 3px 0 var(--fire);margin-bottom:.4rem}
-  .section-subtitle{color:var(--muted);font-size:.95rem;margin-bottom:2.5rem}
-  hr.divider{border:none;border-top:1.5px solid #2a2a2a;margin:0}
-
-  /* MENU CARDS */
-  .menu-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
-  @media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:500px){.menu-grid{grid-template-columns:1fr}}
-  .burger-card{background:var(--card);border:1.5px solid #2a2a2a;border-radius:12px;padding:1.2rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;cursor:pointer}
-  .burger-card:hover{border-color:var(--fire);transform:translateY(-3px)}
-  .burger-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--fire),var(--gold))}
-  .burger-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;margin-bottom:.8rem}
-  .burger-name{font-family:'Bangers',cursive;font-size:1.3rem;letter-spacing:.04em;color:var(--gold);text-shadow:2px 2px 0 var(--fire);margin-bottom:.5rem;text-align:center}
-  .burger-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
-  .burger-tag{display:inline-block;margin-top:.7rem;background:rgba(232,66,10,.15);border:1px solid rgba(232,66,10,.3);color:#f07050;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .6rem;border-radius:1rem}
-  .burger-price{font-family:'Bangers',cursive;margin-top:.9rem;font-size:1.5rem;letter-spacing:.06em;color:var(--gold);text-shadow:2px 2px 0 var(--fire);text-align:center}
-
-  /* MODAL */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
-  .modal-overlay.active{opacity:1;pointer-events:all}
-  .modal{background:#1a1a1a;border:1.5px solid var(--fire);border-radius:16px;max-width:480px;width:100%;padding:2rem;position:relative;transform:translateY(20px);transition:transform .25s}
-  .modal-overlay.active .modal{transform:translateY(0)}
-  .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;transition:color .2s}
-  .modal-close:hover{color:var(--gold)}
-  .modal-name{font-family:'Bangers',cursive;font-size:2rem;letter-spacing:.04em;color:var(--gold);text-shadow:2px 2px 0 var(--fire);margin-bottom:.3rem}
-  .modal-desc{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}
-  .modal h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.7rem}
-  .modal ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-  .modal ul li{display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--text)}
-  .modal ul li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--fire);flex-shrink:0}
-
-  /* PROMO */
-  .promo-box{background:linear-gradient(135deg,#1a0a00,#2a1000);border:2px solid var(--gold);border-radius:16px;padding:2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem}
-  .promo-left .promo-price{font-family:'Bangers',cursive;font-size:3.5rem;color:var(--gold);line-height:1}
-  .promo-left .promo-label{font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
-  .promo-details{font-size:.9rem;color:var(--text);line-height:1.7}
-  .promo-details strong{color:var(--gold)}
-  .bonus-pill{display:inline-block;background:rgba(245,197,24,.15);border:1.5px solid var(--gold);border-radius:2rem;padding:.35rem 1rem;font-size:.8rem;font-weight:900;color:var(--gold);margin-top:.7rem}
-
-  /* COMMANDER */
-  .commander-box{background:rgba(13,13,13,.85);border:2px solid var(--gold);border-radius:16px;padding:2.5rem 2rem}
-  .whatsapp-cta{display:inline-flex;align-items:center;gap:.7rem;background:#25D366;color:#fff;font-weight:900;font-size:1.3rem;padding:.7rem 1.8rem;border-radius:2rem;margin:1rem 0 2rem;text-decoration:none;letter-spacing:.03em}
-  .whatsapp-cta svg{width:24px;height:24px;fill:#fff;flex-shrink:0}
-  .steps{display:flex;flex-direction:column;gap:1.5rem}
-  .step{display:flex;gap:1.2rem;align-items:flex-start}
-  .step-num{font-family:'Bangers',cursive;font-size:3rem;line-height:1;color:var(--gold);text-shadow:2px 2px 0 var(--fire);flex-shrink:0;width:2.5rem;text-align:center}
-  .step-body{}
-  .step-title{font-family:'Bangers',cursive;font-size:1.2rem;letter-spacing:.05em;color:var(--gold);text-shadow:1px 1px 0 var(--fire);margin-bottom:.3rem}
-  .step-text{font-size:.88rem;color:var(--muted);line-height:1.7}
-  .step-text strong{color:var(--fire)}
-  .step-text em{color:var(--gold);font-style:normal;font-weight:700}
-
-  /* INFOS */
-  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-  .info-card{background:var(--card);border:1.5px solid #2a2a2a;border-radius:12px;padding:1.4rem;display:flex;gap:1rem;align-items:flex-start}
-  .info-icon{width:42px;height:42px;border-radius:50%;background:rgba(232,66,10,.15);border:1.5px solid rgba(232,66,10,.3);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-  .info-text .label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.2rem}
-  .info-text .value{font-weight:700;font-size:.95rem;color:var(--text)}
-
-  /* SOCIAL */
-  .social-section{text-align:center;padding:3rem 1.5rem 4rem}
-  .social-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
-  .social-btn{display:flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border-radius:2rem;font-weight:700;font-size:.9rem;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;border:1.5px solid #333;color:var(--text);background:rgba(13,13,13,.75);transition:border-color .2s,color .2s,background .2s}
-  .social-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,197,24,.08)}
-  .social-btn svg{width:18px;height:18px;fill:currentColor}
-
-  /* FOOTER */
-  footer{border-top:1.5px solid #1e1e1e;text-align:center;padding:1.5rem;font-size:.78rem;color:#555}
-
-  @media(max-width:600px){
-    .nav-links{display:none}
-    .promo-box{text-align:center;justify-content:center}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smash Sensei – Le Burger de Nuit à Annemasse</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo"><span style="color:var(--fire);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">SMASH</span><span style="color:#FFAA33;-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">O</span><span style="color:var(--gold);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">SENSEI</span></div>
-  <ul class="nav-links">
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#commander">Commander</a></li>
-    <li><a href="#infos">Infos</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <span style="position:relative;z-index:12;font-size:2.5rem;color:var(--fire);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">S</span>
+      <span style="position:relative;z-index:11;margin-left:-.2rem;font-size:2.3rem;color:var(--fire);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">M</span>
+      <span style="position:relative;z-index:10;margin-left:-.2rem;font-size:2.1rem;color:var(--fire);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">A</span>
+      <span style="position:relative;z-index:9;margin-left:-.2rem;font-size:1.9rem;color:var(--fire);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">S</span>
+      <span style="position:relative;z-index:8;margin-left:-.2rem;font-size:1.6rem;color:var(--fire);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">H</span>
+      <span style="position:relative;z-index:7;margin-left:-.2rem;font-size:2.3rem;color:#FFAA33;-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">O</span>
+      <span style="position:relative;z-index:6;margin-left:-.2rem;font-size:1.6rem;color:var(--gold);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">S</span>
+      <span style="position:relative;z-index:5;margin-left:-.2rem;font-size:1.6rem;color:var(--gold);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">E</span>
+      <span style="position:relative;z-index:4;margin-left:-.2rem;font-size:1.9rem;color:var(--gold);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">N</span>
+      <span style="position:relative;z-index:3;margin-left:-.2rem;font-size:2.1rem;color:var(--gold);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">S</span>
+      <span style="position:relative;z-index:2;margin-left:-.2rem;font-size:2.3rem;color:var(--gold);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">E</span>
+      <span style="position:relative;z-index:1;margin-left:-.2rem;font-size:2.5rem;color:var(--gold);-webkit-text-stroke:1px #000;text-shadow:2px 2px 0 #000">I</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#commander">Commander</a></li>
+      <li><a href="#infos">Infos</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">🌙 Le burger de nuit à Annemasse</div>
-<h1>
-  <span style="color:var(--fire);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">SMASH</span><span style="color:#FFAA33;-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">O</span><span style="color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">SENSEI</span>
-</h1>
-  <p class="hero-sub">Quand le village dort… Smash Senseï régale encore.</p>
-  <div class="hero-hours">
-    <span class="moon">🌙</span>
-    <span>22H → 4H du matin</span>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">🌙 Le burger de nuit à Annemasse</div>
+
+    <!-- Effet accordéon : tailles décroissantes vers le centre, chevauchement avec margin-left négatif -->
+    <h1>
+      <span style="position:relative;z-index:12;font-size:20rem;color:var(--fire);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">S</span>
+      <span style="position:relative;z-index:11;margin-left:-1.5rem;font-size:17.5rem;color:var(--fire);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">M</span>
+      <span style="position:relative;z-index:10;margin-left:-1.5rem;font-size:16rem;color:var(--fire);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">A</span>
+      <span style="position:relative;z-index:9;margin-left:-1.5rem;font-size:14rem;color:var(--fire);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">S</span>
+      <span style="position:relative;z-index:8;margin-left:-1.5rem;font-size:12rem;color:var(--fire);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">H</span>
+      <span style="position:relative;z-index:7;margin-left:-1.5rem;font-size:18rem;color:#FFAA33;-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">O</span>
+      <span style="position:relative;z-index:6;margin-left:-1.5rem;font-size:12rem;color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">S</span>
+      <span style="position:relative;z-index:5;margin-left:-1.5rem;font-size:12rem;color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">E</span>
+      <span style="position:relative;z-index:4;margin-left:-1.5rem;font-size:14rem;color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">N</span>
+      <span style="position:relative;z-index:3;margin-left:-1.5rem;font-size:16rem;color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">S</span>
+      <span style="position:relative;z-index:2;margin-left:-1.5rem;font-size:17.5rem;color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">E</span>
+      <span style="position:relative;z-index:1;margin-left:-1.5rem;font-size:20rem;color:var(--gold);-webkit-text-stroke:2px #000;text-shadow:4px 4px 0 #000,7px 7px 0 #000">I</span>
+    </h1>
+
+    <p class="hero-sub">Quand le village dort… Smash Senseï régale encore.</p>
+
+    <div class="hero-hours">
+      <span class="moon">🌙</span>
+      <span>22H → 4H du matin</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#menu" class="btn btn-primary">Voir le menu</a>
+      <a href="#infos" class="btn btn-outline">Nous trouver</a>
+    </div>
+
+    <div class="scroll-hint">↓ scroll ↓</div>
   </div>
-  <div class="hero-cta">
-    <a href="#menu" class="btn btn-primary">Voir le menu</a>
-    <a href="#infos" class="btn btn-outline">Nous trouver</a>
+
+  <hr class="divider">
+
+  <!-- PRÉAMBULE -->
+  <section class="preambule">
+    <div class="preambule-inner">
+      <p class="preambule-text">
+        Nous sommes Smash Sensei.<br>
+        Comme tout grand sensei, nous suivons une voie.<br><br>
+        Être un modèle — comme un Hokage pour son village.<br>
+        Inspirer, marquer, laisser une trace.<br><br>
+        Se surpasser encore et encore, comme Sangoku.<br><br>
+        Rejoins l'équipage, comme Luffy en quête de son trésor.<br>
+        Ici, ce trésor — c'est le burger parfait.<br><br>
+        Chaque détail compte. Chaque saveur s'élève.<br>
+        Le dojo est ouvert.<br><br>
+        <span class="preambule-cta">DÉCHAÎNE TA FAIM.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="section-title">Le Menu</div>
+    <p class="section-subtitle">5 smash burgers inspirés des plus grands héros de l'animé</p>
+
+    <div class="menu-grid">
+      <div class="burger-card" onclick="openModal('kamehame')">
+        <img src="assets/kamehame-smash.png" alt="Kamehame Smash">
+        <div class="burger-name">Kamehame Smash</div>
+        <div class="burger-tag">Double steak</div>
+        <div class="burger-price">Seul : 9,50€</div>
+        <div class="burger-price">Menu : 11€</div>
+      </div>
+
+      <div class="burger-card" onclick="openModal('rasen')">
+        <img src="assets/rasengan-smash.png" alt="Rasen Smash">
+        <div class="burger-name">Rasen Smash</div>
+        <div class="burger-tag">Signature</div>
+        <div class="burger-price">Seul : 9,50€</div>
+        <div class="burger-price">Menu : 11€</div>
+      </div>
+
+      <div class="burger-card" onclick="openModal('gomu')">
+        <img src="assets/gomu-smash.png" alt="Gomu Smash">
+        <div class="burger-name">Gomu Gomu Smash</div>
+        <div class="burger-tag">Poulet</div>
+        <div class="burger-price">Seul : 10€</div>
+        <div class="burger-price">Menu : 11,50€</div>
+      </div>
+
+      <div class="burger-card" onclick="openModal('onepunch')">
+        <img src="assets/onepunch-smash.png" alt="OnePunch Smash">
+        <div class="burger-name">One Punch Smash</div>
+        <div class="burger-tag">Mix</div>
+        <div class="burger-price">Seul : 10€</div>
+        <div class="burger-price">Menu : 11,50€</div>
+      </div>
+
+      <div class="burger-card" onclick="openModal('titans')">
+        <img src="assets/eren-smash.png" alt="Eren Smash">
+        <div class="burger-name">Smash des Titans</div>
+        <div class="burger-tag">Classique</div>
+        <div class="burger-price">Seul : 10,50€</div>
+        <div class="burger-price">Menu : 12€</div>
+      </div>
+    </div>
+
+    <div class="menu-delivery">
+      <span class="delivery-badge">
+        <span class="delivery-icon">🚚</span>
+        <span>Livraison à partir de 20€</span>
+      </span>
+    </div>
+  </section>
+
+  <!-- MODAL BURGER -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeModalOnBg(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <h4>Ingrédients</h4>
+      <ul id="modal-ingredients"></ul>
+    </div>
   </div>
-  <div class="scroll-hint">↓ scroll ↓</div>
-</div>
 
-<hr class="divider">
+  <hr class="divider">
 
-<!-- PREAMBULE -->
-<section style="text-align:center;max-width:700px;margin:0 auto;padding:3rem 1.5rem 0"><div style="background:rgba(13,13,13,.75);border-radius:16px;padding:2rem 2.5rem">
-  <p style="font-size:1.05rem;line-height:2;color:var(--gold);text-shadow:2px 2px 0 var(--fire);font-family:'Permanent Marker',cursive">
-    Nous sommes Smash Sensei.<br>
-    Comme tout grand sensei, nous suivons une voie.<br><br>
-    Être un modèle — comme un Hokage pour son village.<br>
-    Inspirer, marquer, laisser une trace.<br><br>
-    Se surpasser encore et encore, comme Sangoku.<br><br>
-    Rejoins l'équipage, comme Luffy en quête de son trésor.<br>
-    Ici, ce trésor — c'est le burger parfait.<br><br>
-    Chaque détail compte. Chaque saveur s'élève.<br>
-    Le dojo est ouvert.<br><br>
-    <span style="font-family:'Bangers',cursive;font-size:1.8rem;letter-spacing:.06em;color:var(--gold);text-shadow:2px 2px 0 var(--fire)">DÉCHAÎNE TA FAIM.</span>
-  </p>
-</div></section>
+  <!-- COMMANDER -->
+  <section id="commander">
+    <div class="section-title">Comment commander ?</div>
+    <p class="section-subtitle">Chez Smash Sensei, passer commande c'est aussi simple qu'un Rasengan</p>
 
-<!-- MENU -->
-<section id="menu">
-  <div class="section-title">Le Menu</div>
-  <p class="section-subtitle">5 smash burgers inspirés des plus grands héros de l'animé</p>
-  <div class="menu-grid">
+    <div class="commander-box">
+      <div class="commander-cta">
+        <a href="https://wa.me/33782108206" target="_blank" class="whatsapp-cta">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          07.82.10.82.06
+        </a>
+      </div>
 
-    <div class="burger-card" onclick="openModal('kamehame')">
-      <img src="assets/kamehame-smash.png" alt="Kamehame Smash">
-      <div class="burger-name">Kamehame Smash</div>
-      <div class="burger-tag">Double steak</div>
-      <div class="burger-price">Seul : 9,50€</div>
-      <div class="burger-price">Menu : 11€</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">PRENDS TON DEN DEN MUSHI</div>
+            <p class="step-text">Passe ta commande grâce à ton <strong>Den Den Mushi</strong> (téléphone). Pas besoin de détailler les articles : <em>on a tout ce qu'il faut à bord !</em></p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">ENVOIE-NOUS TA LOCALISATION</div>
+            <p class="step-text">Donne-nous ta <strong>position avec précision</strong> ainsi que ton numéro. Le stock se fait directement avec notre livreur selon ce qu'il reste au moment de son passage. <em>Plus tu commandes tôt, plus tu as le choix !</em></p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">DISPARAIS TEL UN NINJA</div>
+            <p class="step-text">Notre livreur, <strong>plus rapide que son ombre</strong>, se téléportera jusqu'à toi. Prépare-toi à récupérer des smash conçus grâce à des <em>techniques secrètes de ninja !</em></p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">RÉCUPÈRE TA COMMANDE ET DÉGUSTE</div>
+            <p class="step-text">Savoure nos <strong>succulents smash</strong> comme un héros… <em>façon One Punch Man !</em></p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="burger-card" onclick="openModal('rasen')">
-      <img src="assets/rasengan-smash.png" alt="Rasen Smash">
-      <div class="burger-name">Rasen Smash</div>
-      <div class="burger-tag">Signature</div>
-      <div class="burger-price">Seul : 9,50€</div>
-      <div class="burger-price">Menu : 11€</div>
+  <hr class="divider">
+
+  <!-- INFOS PRATIQUES -->
+  <section id="infos">
+    <div class="section-title">Infos Pratiques</div>
+    <p class="section-subtitle">Tout ce qu'il faut savoir pour passer commande</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🕙</div>
+        <div class="info-text">
+          <div class="label">Horaires</div>
+          <div class="value">22h00 – 04h00<br>7j/7</div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div class="info-text">
+          <div class="label">Ville</div>
+          <div class="value">Annemasse<br>Haute-Savoie (74)</div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🏍️</div>
+        <div class="info-text">
+          <div class="label">Service</div>
+          <div class="value">Livraison rapide<br>à domicile</div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📲</div>
+        <div class="info-text">
+          <div class="label">Commande</div>
+          <div class="value">Via Instagram<br>ou Snapchat</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="burger-card" onclick="openModal('gomu')">
-      <img src="assets/gomu-smash.png" alt="Gomu Smash">
-      <div class="burger-name">Gomu Gomu Smash</div>
-      <div class="burger-tag">Poulet</div>
-      <div class="burger-price">Seul : 10€</div>
-      <div class="burger-price">Menu : 11,50€</div>
-    </div>
+  <hr class="divider">
 
-    <div class="burger-card" onclick="openModal('onepunch')">
-      <img src="assets/onepunch-smash.png" alt="OnePunch Smash">
-      <div class="burger-name">One Punch Smash</div>
-      <div class="burger-tag">Mix</div>
-      <div class="burger-price">Seul : 10€</div>
-      <div class="burger-price">Menu : 11,50€</div>
-    </div>
+  <!-- RÉSEAUX SOCIAUX -->
+  <div class="social-section">
+    <div class="section-title">Nous suivre</div>
+    <p class="section-subtitle">Commandes &amp; actus sur les réseaux</p>
 
-    <div class="burger-card" onclick="openModal('titans')">
-      <img src="assets/eren-smash.png" alt="Eren Smash">
-      <div class="burger-name">Smash des Titans</div>
-      <div class="burger-tag">Classique</div>
-      <div class="burger-price">Seul : 10,50€</div>
-      <div class="burger-price">Menu : 12€</div>
-    </div>
+    <div class="social-row">
+      <a href="https://www.instagram.com/smashsenseii" target="_blank" class="social-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @smashsenseii
+      </a>
 
-  </div>
-</section>
+      <a href="https://www.snapchat.com/add/smashsensei" target="_blank" class="social-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg>
+        @smashsensei
+      </a>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnBg(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-name" id="modal-name"></div>
-    <div class="modal-desc" id="modal-desc"></div>
-    <h4>Ingrédients</h4>
-    <ul id="modal-ingredients"></ul>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- COMMANDER -->
-<section id="commander">
-  <div class="section-title">Comment commander ?</div>
-  <p class="section-subtitle">Chez Smash Sensei, passer commande c'est aussi simple qu'un Rasengan</p>
-  <div class="commander-box">
-    <div style="text-align:center">
-      <a href="https://wa.me/33782108206" target="_blank" class="whatsapp-cta">
+      <a href="https://wa.me/33609136653" target="_blank" class="social-btn">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        07.82.10.82.06
+        Commander sur WhatsApp
+      </a>
+
+      <a href="sms:0609136653" class="social-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        SMS
       </a>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <div class="step-title">PRENDS TON DEN DEN MUSHI</div>
-          <p class="step-text">Passe ta commande grâce à ton <strong>Den Den Mushi</strong> (téléphone). Pas besoin de détailler les articles : <em>on a tout ce qu'il faut à bord !</em></p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <div class="step-title">ENVOIE-NOUS TA LOCALISATION</div>
-          <p class="step-text">Donne-nous ta <strong>position avec précision</strong> ainsi que ton numéro. Le stock se fait directement avec notre livreur selon ce qu'il reste au moment de son passage. <em>Plus tu commandes tôt, plus tu as le choix !</em></p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <div class="step-title">DISPARAIS TEL UN NINJA</div>
-          <p class="step-text">Notre livreur, <strong>plus rapide que son ombre</strong>, se téléportera jusqu'à toi. Prépare-toi à récupérer des smash conçus grâce à des <em>techniques secrètes de ninja !</em></p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <div class="step-title">RÉCUPÈRE TA COMMANDE ET DÉGUSTE</div>
-          <p class="step-text">Savoure nos <strong>succulents smash</strong> comme un héros… <em>façon One Punch Man !</em></p>
-        </div>
-      </div>
-    </div>
   </div>
-</section>
 
-<hr class="divider">
+  <!-- FOOTER -->
+  <footer>
+    <p>© <span id="year"></span> Smash Sensei · Le burger de nuit à Annemasse · 22H–4H</p>
+    <p class="footer-credit">
+      Site conçu et réalisé par <strong><a href="https://www.mnkagency.com/" target="_blank">MNK Agency</a></strong>
+    </p>
+  </footer>
 
-<!-- INFOS -->
-<section id="infos">
-  <div class="section-title">Infos Pratiques</div>
-  <p class="section-subtitle">Tout ce qu'il faut savoir pour passer commande</p>
-  <div class="info-grid">
-    <div class="info-card">
-      <div class="info-icon">🕙</div>
-      <div class="info-text">
-        <div class="label">Horaires</div>
-        <div class="value">22h00 – 04h00<br>7j/7</div>
-      </div>
-    </div>
-    <div class="info-card">
-      <div class="info-icon">📍</div>
-      <div class="info-text">
-        <div class="label">Ville</div>
-        <div class="value">Annemasse<br>Haute-Savoie (74)</div>
-      </div>
-    </div>
-    <div class="info-card">
-      <div class="info-icon">🏍️</div>
-      <div class="info-text">
-        <div class="label">Service</div>
-        <div class="value">Livraison rapide<br>à domicile</div>
-      </div>
-    </div>
-    <div class="info-card">
-      <div class="info-icon">📲</div>
-      <div class="info-text">
-        <div class="label">Commande</div>
-        <div class="value">Via Instagram<br>ou Snapchat</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear()
 
-<hr class="divider">
+    const burgers = {
+      kamehame: {
+        name: 'Kamehame Smash',
+        desc: 'Le classique ultime — double puissance, double fromage.',
+        ingredients: ['Double Steak Smash', 'Cheddar', 'Sauce BigMac', 'Cornichons']
+      },
+      rasen: {
+        name: 'Rasen Smash',
+        desc: 'Le tourbillon de saveurs — croustillant garanti.',
+        ingredients: ['Double Steak', 'Cheddar', 'Sauce Tasty', 'Oignons frits']
+      },
+      gomu: {
+        name: 'Gomu Gomu Smash',
+        desc: 'Élastique en saveurs, croustillant en texture.',
+        ingredients: ['Double Steak', 'Emmental', 'Sauce Magic', 'Oignons caramélisés']
+      },
+      onepunch: {
+        name: 'One Punch Smash',
+        desc: 'Un seul coup suffit — steak ET poulet pour les plus affamés.',
+        ingredients: ['Poulet', 'Emmental', 'Rösti Potatoe', 'Bacon', 'Sauce Tartare']
+      },
+      titans: {
+        name: 'Smash des Titans',
+        desc: 'Massif, imposant, implacable.',
+        ingredients: ['Double Steak Smash', 'Cheddar', 'Bacon', 'Rösti Potatoe', 'Sauce Giant']
+      }
+    }
 
-<!-- SOCIAL -->
-<div class="social-section">
-  <div class="section-title" style="margin-bottom:.3rem">Nous suivre</div>
-  <p style="color:var(--muted);font-size:.9rem">Commandes & actus sur les réseaux</p>
-  <div class="social-row">
-    <a href="https://www.instagram.com/smashsenseii" target="_blank" class="social-btn">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      @smashsenseii
-    </a>
-    <a href="https://www.snapchat.com/add/smashsensei" target="_blank" class="social-btn">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.074-.346-.119-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z"/></svg>
-      @smashsensei
-    </a>
-    <a href="https://wa.me/33609136653" target="_blank" class="social-btn">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Commander sur WhatsApp
-    </a>
-    <a href="sms:0609136653" class="social-btn">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
-      SMS
-    </a>
-  </div>
-</div>
+    function openModal(id) {
+      const b = burgers[id]
+      document.getElementById('modal-name').textContent = b.name
+      document.getElementById('modal-desc').textContent = b.desc
+      document.getElementById('modal-ingredients').innerHTML = b.ingredients.map(i => `<li>${i}</li>`).join('')
+      document.getElementById('modal-overlay').classList.add('active')
+    }
 
-<footer>
-  © <span id="year"></span> Smash Sensei · Le burger de nuit à Annemasse · 22H–4H
-</footer>
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('active')
+    }
 
-<script>
-document.getElementById('year').textContent = new Date().getFullYear()
+    function closeModalOnBg(e) {
+      if (e.target.id === 'modal-overlay') closeModal()
+    }
 
-const burgers = {
-  kamehame: {
-    name: 'Kamehame Smash',
-    desc: 'Le classique ultime — double puissance, double fromage.',
-    ingredients: ['Double Steak Smash', 'Cheddar', 'Sauce BigMac', 'Cornichons']
-  },
-  rasen: {
-    name: 'Rasen Smash',
-    desc: 'Le tourbillon de saveurs — croustillant garanti.',
-    ingredients: ['Double Steak', 'Cheddar', 'Sauce Tasty', 'Oignons frits']
-  },
-  gomu: {
-    name: 'Gomu Gomu Smash',
-    desc: 'Élastique en saveurs, croustillant en texture.',
-    ingredients: ['Double Steak', 'Emmental', 'Sauce Magic', 'Oignons caramélisés']
-  },
-  onepunch: {
-    name: 'One Punch Smash',
-    desc: 'Un seul coup suffit — steak ET poulet pour les plus affamés.',
-    ingredients: ['Poulet', 'Emmental', 'Rösti Potatoe', 'Bacon', 'Sauce Tartare']
-  },
-  titans: {
-    name: 'Smash des Titans',
-    desc: 'Massif, imposant, implacable.',
-    ingredients: ['Double Steak Smash', 'Cheddar', 'Bacon', 'Rösti Potatoe', 'Sauce Giant']
-  }
-}
-
-function openModal(id) {
-  const b = burgers[id]
-  document.getElementById('modal-name').textContent = b.name
-  document.getElementById('modal-desc').textContent = b.desc
-  document.getElementById('modal-ingredients').innerHTML = b.ingredients.map(i => `<li>${i}</li>`).join('')
-  document.getElementById('modal-overlay').classList.add('active')
-}
-function closeModal() { document.getElementById('modal-overlay').classList.remove('active') }
-function closeModalOnBg(e) { if (e.target.id === 'modal-overlay') closeModal() }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal() })
-</script>
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal()
+    })
+  </script>
 
 </body>
 </html>
