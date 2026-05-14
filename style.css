@@ -327,8 +327,9 @@ hr.divider {
 }
 
 .burger-tag {
-  display: inline-block;
+  display: block;
   margin-top: .7rem;
+  text-align: center;
   background: rgba(232, 66, 10, .15);
   border: 1px solid rgba(232, 66, 10, .3);
   color: #f07050;
