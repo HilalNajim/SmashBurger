@@ -122,12 +122,12 @@ nav {
 @media (max-width: 480px) { .hero h1 { zoom: .32; } }
 
 .hero-sub {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Bangers', cursive;
   font-size: clamp(1.6rem, 5vw, 4rem);
+  letter-spacing: .04em;
   color: var(--gold);
+  text-shadow: 3px 3px 0 var(--fire);
   margin: 1.2rem 0 .6rem;
-  text-shadow: 3px 3px 0 var(--fire), 6px 6px 0 rgba(0, 0, 0, .5);
-  letter-spacing: .02em;
 }
 
 .hero-hours {
@@ -225,14 +225,12 @@ section {
 }
 
 .section-subtitle {
-  color: var(--text);
+  font-family: 'Bangers', cursive;
   font-size: .95rem;
-  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--gold);
+  text-shadow: 3px 3px 0 var(--fire);
   margin-bottom: 2.5rem;
-  display: inline-block;
-  background: rgba(13, 13, 13, .6);
-  padding: .3rem .9rem;
-  border-radius: .5rem;
 }
 
 hr.divider {
@@ -665,6 +663,85 @@ footer p {
 .footer-credit a {
   color: var(--gold);
   text-decoration: none;
+}
+
+/* --- Mentions légales --- */
+.legal-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--gold);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.legal-btn:hover {
+  text-decoration: underline;
+}
+
+.legal-modal {
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--fire) transparent;
+}
+
+.legal-title {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem;
+  letter-spacing: .04em;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 var(--fire);
+  margin-bottom: 1.5rem;
+  padding-right: 2rem;
+}
+
+.legal-block {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.legal-block:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.legal-block-title {
+  font-family: 'Bangers', cursive;
+  font-size: 1.1rem;
+  letter-spacing: .04em;
+  color: var(--fire);
+  margin-bottom: .8rem;
+}
+
+.legal-block-title--second {
+  margin-top: 1rem;
+}
+
+.legal-block p {
+  font-size: .85rem;
+  color: var(--text);
+  margin-bottom: .4rem;
+  line-height: 1.6;
+}
+
+.legal-label {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.legal-block a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.legal-block a:hover {
+  text-decoration: underline;
 }
 
 /* --- Responsive global --- */
