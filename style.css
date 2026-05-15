@@ -18,12 +18,13 @@
 }
 
 :root {
-  --fire: #E8420A;
-  --gold: #F5C518;
-  --dark: #0d0d0d;
-  --card: #1a1a1a;
-  --text: #f0ece0;
-  --muted: #aaa;
+  --fire:   #E8420A;
+  --orange: #FFAA33;
+  --gold:   #F5C518;
+  --dark:   #0d0d0d;
+  --card:   #1a1a1a;
+  --text:   #f0ece0;
+  --muted:  #aaa;
 }
 
 body {
@@ -51,6 +52,20 @@ nav {
   line-height: 1;
   display: inline-flex;
   align-items: flex-end;
+}
+
+/* Lettre du logo — taille, couleur et z-index contrôlés par variables CSS inline */
+.logo-letter {
+  position: relative;
+  z-index: var(--z);
+  font-size: var(--size);
+  color: var(--clr);
+  -webkit-text-stroke: 1px #000;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.logo-letter + .logo-letter {
+  margin-left: -.2rem;
 }
 
 .nav-links {
@@ -108,7 +123,7 @@ nav {
   display: inline-block;
 }
 
-/* Effet accordéon : chaque lettre a une font-size individuelle via style inline */
+/* Titre hero : lettres avec effet accordéon (tailles décroissantes vers le centre) */
 .hero h1 {
   font-family: 'DBZ', sans-serif;
   letter-spacing: .04em;
@@ -116,6 +131,20 @@ nav {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+}
+
+/* Lettre du titre — taille, couleur et z-index contrôlés par variables CSS inline */
+.hero-letter {
+  position: relative;
+  z-index: var(--z);
+  font-size: var(--size);
+  color: var(--clr);
+  -webkit-text-stroke: 2px #000;
+  text-shadow: 4px 4px 0 #000, 7px 7px 0 #000;
+}
+
+.hero-letter + .hero-letter {
+  margin-left: -1.5rem;
 }
 
 @media (max-width: 900px) { .hero h1 { zoom: .55; } }
@@ -347,6 +376,73 @@ hr.divider {
   color: var(--gold);
   text-shadow: 2px 2px 0 var(--fire);
   text-align: center;
+}
+
+/* --- Extras (boissons & desserts) --- */
+.extras-label {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  letter-spacing: .04em;
+  color: var(--fire);
+  text-shadow: 2px 2px 0 var(--gold);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 600px;
+}
+
+@media (max-width: 500px) { .extras-grid { grid-template-columns: 1fr; } }
+
+.extra-card {
+  background: var(--card);
+  border: 1.5px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.4rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+
+.extra-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.extra-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--fire));
+}
+
+.extra-icon {
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+
+.extra-name {
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
+  letter-spacing: .04em;
+  color: var(--text);
+  margin-bottom: .5rem;
+}
+
+.extra-price {
+  font-family: 'Bangers', cursive;
+  font-size: 1.6rem;
+  letter-spacing: .06em;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 var(--fire);
 }
 
 .menu-delivery {
